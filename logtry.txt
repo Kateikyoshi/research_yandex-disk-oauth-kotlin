@@ -1,0 +1,3 @@
+2024-08-23T21:13:12.327+03:00  INFO 8636 --- [bakari] [main] jp.warau.bakari.BakariApplication        : Starting BakariApplication using Java 22.0.2 with PID 8636 (/home/kateikyoshi/IdeaProjects/bakari/target/classes started by kateikyoshi in /home/kateikyoshi/IdeaProjects/bakari)
+2024-08-23T21:13:12.328+03:00  INFO 8636 --- [bakari] [main] jp.warau.bakari.BakariApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-08-23T21:13:12.677+03:00  INFO 8636 --- [bakari] [main] jp.warau.bakari.BakariApplication        : Started BakariApplication in 0.623 seconds (process running for 0.86)
