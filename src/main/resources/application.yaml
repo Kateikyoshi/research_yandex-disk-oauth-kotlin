@@ -1,0 +1,42 @@
+server:
+  port: 8082
+
+#general
+spring:
+  application:
+    name: bakari
+  output:
+    ansi:
+      enabled: always
+  security:
+    oauth2:
+      client:
+        registration:
+          yandex:
+            provider: yandex
+            client-id: 'id' #client id from website
+            client-secret: 'secret' #client secret from website
+            client-authentication-method: client_secret_post
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8082/login/oauth2/code/yandex
+            client-name: yandex
+            principal: "principal" #your e-mail
+          google:
+            client-id: '872834155393-aup20oo8hstb4rm5crdjrre5af91hcog.apps.googleusercontent.com'
+            client-secret: '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'
+            redirect-uri: http://localhost:8082/login/oauth2/code/google
+        provider:
+          yandex:
+            authorization-uri: https://oauth.yandex.ru/authorize
+            #http://localhost:8082/oauth2/authorization/yandex
+            token-uri: https://oauth.yandex.ru/token
+            userInfoUri: https://login.yandex.ru/info
+            user-name-attribute: default_email
+
+#file saving
+file:
+  where-to: '/home/kateikyoshi/IdeaProjects/bakari/Bears1.jpg'
+
+logging:
+  level:
+    root: debug
