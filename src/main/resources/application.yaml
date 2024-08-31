@@ -8,6 +8,22 @@ spring:
   output:
     ansi:
       enabled: always
+  r2dbc:
+    #url: r2dbc:h2:mem:///./testdb;DB_CLOSE_DELAY=-1
+    url: 'r2dbc:postgresql://localhost:5566/bakari'
+    username: daemon
+    password: daemon
+
+  sql:
+    init:
+      platform: postgresql
+      #with this mode you will force loading of /resources/schema-postgresql.sql
+      #but watch out, if database is already initialized, you are a dead man.
+      #best used once on first start, otherwise you better delete DB volume
+      #from docker to start over.
+      #Perhaps it is easier to provide an init script to DB with compose volumes.
+      #mode: always
+
   security:
     oauth2:
       client:
@@ -18,12 +34,12 @@ spring:
             client-secret: 'secret' #client secret from website
             client-authentication-method: client_secret_post
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8082/login/oauth2/code/yandex
-            client-name: yandex
+            redirect-uri: http://localhost:8082/login/oauth2/code/yandex #https://oauth.yandex.ru/verification_code
             principal: "principal" #your e-mail
+            client-name: yandex
           google:
-            client-id: '872834155393-aup20oo8hstb4rm5crdjrre5af91hcog.apps.googleusercontent.com'
-            client-secret: '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'
+            client-id: 'id' #client id from website
+            client-secret: 'secret' #client secret from website
             redirect-uri: http://localhost:8082/login/oauth2/code/google
         provider:
           yandex:

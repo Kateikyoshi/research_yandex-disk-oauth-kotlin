@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: ../.
+      dockerfile: deploy/backend/Dockerfile
+    network_mode: "host"
+    environment:
+      SPRING_R2DBC_URL: 'r2dbc:postgresql://localhost:5566/bakari'
+      SPRING_R2DBC_USERNAME: daemon
+      SPRING_R2DBC_PASSWORD: daemon
+      SPRING_SQL_INIT_PLATFORM: postgresql
+      SPRING_SQL_INIT_MODE: always
+  db:
+    image: postgres
+    network_mode: "host"
+    environment:
+      POSTGRES_USER: daemon
+      POSTGRES_PASSWORD: daemon
+      PGPORT: 5566
+      POSTGRES_DB: bakari
+    volumes:
+      - pgdatabakari:/var/lib/postgresql/data
+      - /home/kateikyoshi/postgre_docker_init:/docker-entrypoint-initdb.d/:ro
+volumes:
+  pgdatabakari:

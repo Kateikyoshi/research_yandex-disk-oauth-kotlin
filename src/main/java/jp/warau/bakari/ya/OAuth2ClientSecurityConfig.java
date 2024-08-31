@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ClientHttpConnector;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.*;
@@ -22,6 +23,14 @@ import reactor.netty.transport.logging.AdvancedByteBufFormat;
 @Configuration
 //@EnableWebFluxSecurity
 public class OAuth2ClientSecurityConfig {
+
+    @Bean
+    public ReactiveOAuth2AuthorizedClientService r2dbcReactiveClientRegistrationRepository(
+            DatabaseClient databaseClient,
+            ReactiveClientRegistrationRepository clientRegistrationRepository
+    ) {
+        return new R2dbcReactiveOAuth2AuthorizedClientService(databaseClient, clientRegistrationRepository);
+    }
 
     /**
      *
