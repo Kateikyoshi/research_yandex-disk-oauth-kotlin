@@ -1,0 +1,13 @@
+server:
+  port: 8082
+
+#general
+spring:
+  application:
+    name: bakari
+  output:
+    ansi:
+      enabled: always
+  sql:
+    init:
+      platform: postgresql-test
